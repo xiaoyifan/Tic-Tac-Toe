@@ -14,6 +14,8 @@
 		CCFAA6791A84B3CC00C97DAC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCFAA6781A84B3CC00C97DAC /* Images.xcassets */; };
 		CCFAA67C1A84B3CC00C97DAC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCFAA67A1A84B3CC00C97DAC /* LaunchScreen.xib */; };
 		CCFAA6881A84B3CD00C97DAC /* TicTacToeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CCFAA6871A84B3CD00C97DAC /* TicTacToeTests.m */; };
+		CCFAA6921A84C1EF00C97DAC /* Media1.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCFAA6911A84C1EF00C97DAC /* Media1.xcassets */; };
+		CCFAA6981A84CCA100C97DAC /* lettersView.m in Sources */ = {isa = PBXBuildFile; fileRef = CCFAA6971A84CCA100C97DAC /* lettersView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,9 @@
 		CCFAA6811A84B3CD00C97DAC /* TicTacToeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TicTacToeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCFAA6861A84B3CD00C97DAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCFAA6871A84B3CD00C97DAC /* TicTacToeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TicTacToeTests.m; sourceTree = "<group>"; };
+		CCFAA6911A84C1EF00C97DAC /* Media1.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media1.xcassets; sourceTree = "<group>"; };
+		CCFAA6961A84CCA100C97DAC /* lettersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lettersView.h; sourceTree = "<group>"; };
+		CCFAA6971A84CCA100C97DAC /* lettersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = lettersView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,12 +86,15 @@
 		CCFAA66A1A84B3CC00C97DAC /* TicTacToe */ = {
 			isa = PBXGroup;
 			children = (
+				CCFAA6961A84CCA100C97DAC /* lettersView.h */,
+				CCFAA6971A84CCA100C97DAC /* lettersView.m */,
 				CCFAA66F1A84B3CC00C97DAC /* AppDelegate.h */,
 				CCFAA6701A84B3CC00C97DAC /* AppDelegate.m */,
 				CCFAA6721A84B3CC00C97DAC /* ViewController.h */,
 				CCFAA6731A84B3CC00C97DAC /* ViewController.m */,
 				CCFAA6751A84B3CC00C97DAC /* Main.storyboard */,
 				CCFAA6781A84B3CC00C97DAC /* Images.xcassets */,
+				CCFAA6911A84C1EF00C97DAC /* Media1.xcassets */,
 				CCFAA67A1A84B3CC00C97DAC /* LaunchScreen.xib */,
 				CCFAA66B1A84B3CC00C97DAC /* Supporting Files */,
 			);
@@ -199,6 +207,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCFAA6921A84C1EF00C97DAC /* Media1.xcassets in Resources */,
 				CCFAA6771A84B3CC00C97DAC /* Main.storyboard in Resources */,
 				CCFAA67C1A84B3CC00C97DAC /* LaunchScreen.xib in Resources */,
 				CCFAA6791A84B3CC00C97DAC /* Images.xcassets in Resources */,
@@ -221,6 +230,7 @@
 			files = (
 				CCFAA6741A84B3CC00C97DAC /* ViewController.m in Sources */,
 				CCFAA6711A84B3CC00C97DAC /* AppDelegate.m in Sources */,
+				CCFAA6981A84CCA100C97DAC /* lettersView.m in Sources */,
 				CCFAA66E1A84B3CC00C97DAC /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

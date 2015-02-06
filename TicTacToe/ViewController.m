@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
+@interface ViewController ()<UIGestureRecognizerDelegate>
 
 @end
 
@@ -23,5 +23,46 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (IBAction)panLetterX:(UIPanGestureRecognizer *)sender {
+    
+    CGPoint touchPoint = [sender locationInView:[sender view]];
+    NSLog(@"x is %f, y is %f", touchPoint.x, touchPoint.y);
+    
+    UIView *piece = [sender view];
+    [[piece superview] bringSubviewToFront:piece];
+    
+    if([sender state] == UIGestureRecognizerStateBegan || [sender state] == UIGestureRecognizerStateChanged){
+        
+        CGPoint translation  = [sender translationInView:[piece superview]];
+        
+        [piece setCenter:CGPointMake([piece center].x + translation.x, [piece center].y + translation.y)];
+        [sender setTranslation:CGPointZero inView:[piece superview]];
+        
+        
+    }
+
+}
+
+- (IBAction)panLetterO:(UIPanGestureRecognizer *)sender {
+    
+    CGPoint touchPoint = [sender locationInView:[sender view]];
+    NSLog(@"x is %f, y is %f", touchPoint.x, touchPoint.y);
+    
+    UIView *piece = [sender view];
+    [[piece superview] bringSubviewToFront:piece];
+    
+    if([sender state] == UIGestureRecognizerStateBegan || [sender state] == UIGestureRecognizerStateChanged){
+        
+        CGPoint translation  = [sender translationInView:[piece superview]];
+        
+        [piece setCenter:CGPointMake([piece center].x + translation.x, [piece center].y + translation.y)];
+        [sender setTranslation:CGPointZero inView:[piece superview]];
+        
+        
+    }
+
+}
+
 
 @end

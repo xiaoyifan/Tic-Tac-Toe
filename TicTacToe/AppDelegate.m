@@ -17,7 +17,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [self setAttributes];
     return YES;
+}
+
+#pragma mark-Using UIAppearance to customize UI components
+-(void)setAttributes{    
+    
+    [[UILabel appearance] setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:20.0]];
+    [[UILabel appearance] setTextColor:[UIColor whiteColor]];
+   
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
