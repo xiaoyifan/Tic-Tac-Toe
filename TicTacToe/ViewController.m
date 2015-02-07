@@ -7,8 +7,16 @@
 //
 
 #import "ViewController.h"
+#import <AudioToolbox/AudioServices.h>
 
 @interface ViewController ()<UIAlertViewDelegate>
+{
+    SystemSoundID applause;
+    SystemSoundID openGrid;
+    SystemSoundID buzzer;
+    SystemSoundID woosh;
+
+}
 
 @property CGPoint letterXOriginalPosition;
 @property CGPoint letterOOriginalPosition;
@@ -39,6 +47,27 @@
     }
     
     [self disableLetterO];
+    
+    [self loadAudios];
+}
+
+-(void)loadAudios{
+    NSURL *Audience_Applause   = [[NSBundle mainBundle] URLForResource: @"Audience_Applause" withExtension: @"mp3"];
+    //initialize SystemSounID variable with file URL
+    AudioServicesCreateSystemSoundID (CFBridgingRetain(Audience_Applause), &applause);
+    
+    NSURL *Buzzer_Sound   = [[NSBundle mainBundle] URLForResource: @"Buzzer_Sound" withExtension: @"mp3"];
+    //initialize SystemSounID variable with file URL
+    AudioServicesCreateSystemSoundID (CFBridgingRetain(Buzzer_Sound), &buzzer);
+    
+    NSURL *glass_ping   = [[NSBundle mainBundle] URLForResource: @"glass_ping" withExtension: @"mp3"];
+    //initialize SystemSounID variable with file URL
+    AudioServicesCreateSystemSoundID (CFBridgingRetain(glass_ping), &openGrid);
+
+    NSURL *wooshSound   = [[NSBundle mainBundle] URLForResource: @"woosh" withExtension: @"mp3"];
+    //initialize SystemSounID variable with file URL
+    AudioServicesCreateSystemSoundID (CFBridgingRetain(wooshSound), &woosh);
+
 }
 
 
@@ -85,6 +114,11 @@
     UIView *piece = [sender view];
     [[piece superview] bringSubviewToFront:piece];
     
+    if([sender state] == UIGestureRecognizerStateBegan)
+    {
+        AudioServicesPlaySystemSound(woosh);
+    }
+    
     if([sender state] == UIGestureRecognizerStateBegan || [sender state] == UIGestureRecognizerStateChanged){
         
         CGPoint translation  = [sender translationInView:[piece superview]];
@@ -105,6 +139,11 @@
     
     UIView *piece = [sender view];
     [[piece superview] bringSubviewToFront:piece];
+    
+    if([sender state] == UIGestureRecognizerStateBegan)
+    {
+        AudioServicesPlaySystemSound(woosh);
+    }
     
     if([sender state] == UIGestureRecognizerStateBegan || [sender state] == UIGestureRecognizerStateChanged){
         
@@ -134,11 +173,13 @@
             //if the intersection is detected, we gonna add the dragging image to the grid
             if ([self setImageOfView:myView toView:currentView] == FALSE) {
                 //Animation method call here
+                
+                AudioServicesPlaySystemSound(buzzer);
                 [self movingBackAnimation:myView];
                 
             }
             else{//if the image insertion is succeeded
-
+                
                 char ch;
                 
                 if(myView.tag == 20){
@@ -153,6 +194,8 @@
                 
                 if ([self checkIfWinTheGame]) {
                     
+                    AudioServicesPlaySystemSound(applause);
+                    
                     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Game Over" message:[NSString stringWithFormat:@"%c wins the game",ch] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                     [alert show];
                     break;
@@ -162,6 +205,8 @@
                     [alert show];
                     break;
                 }
+                
+                AudioServicesPlaySystemSound(openGrid);
                 
                     //tag specification: 20 is X, 10 is O
                    if (myView.tag == 20) {

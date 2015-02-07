@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC15EA991A86A4ED007CE08E /* Buzzer_Sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CC15EA961A86A4ED007CE08E /* Buzzer_Sound.mp3 */; };
+		CC15EA9A1A86A4ED007CE08E /* glass_ping.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CC15EA971A86A4ED007CE08E /* glass_ping.mp3 */; };
+		CC15EA9C1A86A923007CE08E /* woosh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CC15EA9B1A86A923007CE08E /* woosh.mp3 */; };
+		CC15EA9E1A86AAEE007CE08E /* Audience_Applause.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CC15EA9D1A86AAEE007CE08E /* Audience_Applause.mp3 */; };
 		CCFAA66E1A84B3CC00C97DAC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CCFAA66D1A84B3CC00C97DAC /* main.m */; };
 		CCFAA6711A84B3CC00C97DAC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CCFAA6701A84B3CC00C97DAC /* AppDelegate.m */; };
 		CCFAA6741A84B3CC00C97DAC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCFAA6731A84B3CC00C97DAC /* ViewController.m */; };
@@ -29,6 +33,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CC15EA961A86A4ED007CE08E /* Buzzer_Sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Buzzer_Sound.mp3; sourceTree = "<group>"; };
+		CC15EA971A86A4ED007CE08E /* glass_ping.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = glass_ping.mp3; sourceTree = "<group>"; };
+		CC15EA9B1A86A923007CE08E /* woosh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = woosh.mp3; sourceTree = "<group>"; };
+		CC15EA9D1A86AAEE007CE08E /* Audience_Applause.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Audience_Applause.mp3; sourceTree = "<group>"; };
 		CCFAA6681A84B3CC00C97DAC /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCFAA66C1A84B3CC00C97DAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCFAA66D1A84B3CC00C97DAC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -65,6 +73,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CC15EA941A86A4ED007CE08E /* sound */ = {
+			isa = PBXGroup;
+			children = (
+				CC15EA961A86A4ED007CE08E /* Buzzer_Sound.mp3 */,
+				CC15EA9D1A86AAEE007CE08E /* Audience_Applause.mp3 */,
+				CC15EA971A86A4ED007CE08E /* glass_ping.mp3 */,
+				CC15EA9B1A86A923007CE08E /* woosh.mp3 */,
+			);
+			path = sound;
+			sourceTree = "<group>";
+		};
 		CCFAA65F1A84B3CC00C97DAC = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +115,7 @@
 				CCFAA6781A84B3CC00C97DAC /* Images.xcassets */,
 				CCFAA6911A84C1EF00C97DAC /* Media1.xcassets */,
 				CCFAA67A1A84B3CC00C97DAC /* LaunchScreen.xib */,
+				CC15EA941A86A4ED007CE08E /* sound */,
 				CCFAA66B1A84B3CC00C97DAC /* Supporting Files */,
 			);
 			path = TicTacToe;
@@ -207,10 +227,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC15EA9A1A86A4ED007CE08E /* glass_ping.mp3 in Resources */,
+				CC15EA991A86A4ED007CE08E /* Buzzer_Sound.mp3 in Resources */,
 				CCFAA6921A84C1EF00C97DAC /* Media1.xcassets in Resources */,
+				CC15EA9E1A86AAEE007CE08E /* Audience_Applause.mp3 in Resources */,
 				CCFAA6771A84B3CC00C97DAC /* Main.storyboard in Resources */,
 				CCFAA67C1A84B3CC00C97DAC /* LaunchScreen.xib in Resources */,
 				CCFAA6791A84B3CC00C97DAC /* Images.xcassets in Resources */,
+				CC15EA9C1A86A923007CE08E /* woosh.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +448,7 @@
 				CCFAA68D1A84B3CD00C97DAC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CCFAA68E1A84B3CD00C97DAC /* Build configuration list for PBXNativeTarget "TicTacToeTests" */ = {
 			isa = XCConfigurationList;
@@ -432,6 +457,7 @@
 				CCFAA6901A84B3CD00C97DAC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
