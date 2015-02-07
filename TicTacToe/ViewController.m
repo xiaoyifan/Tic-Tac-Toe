@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()<UIGestureRecognizerDelegate>
+@interface ViewController ()
 
 @end
 
@@ -39,7 +39,10 @@
         [piece setCenter:CGPointMake([piece center].x + translation.x, [piece center].y + translation.y)];
         [sender setTranslation:CGPointZero inView:[piece superview]];
         
-        
+    }
+    
+    if ([sender state] == UIGestureRecognizerStateEnded) {
+        [self detectIntersect:self.letterX];
     }
 
 }
@@ -61,7 +64,22 @@
         
         
     }
+    
+    if ([sender state] == UIGestureRecognizerStateEnded) {
+        [self detectIntersect:self.letterO];
+    }
 
+}
+
+
+-(void)detectIntersect:(UIImageView *)myView{
+    
+    for (int i=1; i<9; i++) {
+        UIView *currentView = [[self view] viewWithTag:i];
+        if (CGRectIntersectsRect(currentView.frame, myView.frame)) {
+            NSLog(@"View Intersect with number %d view", i);
+        }
+    }
 }
 
 

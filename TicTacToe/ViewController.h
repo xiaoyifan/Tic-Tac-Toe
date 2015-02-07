@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController<UIGestureRecognizerDelegate>
+
+@property (weak, nonatomic) IBOutlet UIImageView *letterX;
+
+@property (weak, nonatomic) IBOutlet UIImageView *letterO;
 
 
 @end
