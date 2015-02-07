@@ -8,10 +8,12 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
+@interface ViewController ()<UIAlertViewDelegate>
 
 @property CGPoint letterXOriginalPosition;
 @property CGPoint letterOOriginalPosition;
+
+@property NSMutableArray *status;
 
 @end
 
@@ -30,6 +32,11 @@
     self.letterOOriginalPosition = self.letterO.center;
     //save the original positon of two dragging image to the property,
     //it will be used in the animation.
+    self.status = [[NSMutableArray alloc]init];
+    
+    for (int i=0; i<9; i++) {
+        [self.status addObject:@"N"];
+    }
     
     [self disableLetterO];
 }
@@ -75,9 +82,6 @@
 #pragma mark - gesture recognition
 - (IBAction)panLetterX:(UIPanGestureRecognizer *)sender {
     
-    CGPoint touchPoint = [sender locationInView:[sender view]];
-    NSLog(@"x is %f, y is %f", touchPoint.x, touchPoint.y);
-    
     UIView *piece = [sender view];
     [[piece superview] bringSubviewToFront:piece];
     
@@ -97,9 +101,7 @@
 }
 
 - (IBAction)panLetterO:(UIPanGestureRecognizer *)sender {
-    
-    CGPoint touchPoint = [sender locationInView:[sender view]];
-    NSLog(@"x is %f, y is %f", touchPoint.x, touchPoint.y);
+
     
     UIView *piece = [sender view];
     [[piece superview] bringSubviewToFront:piece];
@@ -136,9 +138,30 @@
                 
             }
             else{//if the image insertion is succeeded
+
+                char ch;
                 
-                //detect if there's a winner
-                //if not, we should switch to another player
+                if(myView.tag == 20){
+                    [self.status replaceObjectAtIndex:i-1 withObject:@"X"];
+                    ch = 'X';
+                }
+                else{
+                    [self.status replaceObjectAtIndex:i-1 withObject:@"O"];
+                    ch = 'O';
+                }
+                
+                
+                if ([self checkIfWinTheGame]) {
+                    
+                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Game Over" message:[NSString stringWithFormat:@"%c wins the game",ch] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                    [alert show];
+                    break;
+                }
+                else if([self checkGameEven]){
+                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Game Ends Even" message:[NSString stringWithFormat:@"press ok to restart"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                    [alert show];
+                    break;
+                }
                 
                     //tag specification: 20 is X, 10 is O
                    if (myView.tag == 20) {
@@ -151,7 +174,6 @@
                        [self disableLetterO];
                        [self enableLetterX];
                     }
-                
             }
             
             break;
@@ -160,6 +182,19 @@
     }
 }
 
+-(void)refreshGame{
+ 
+    for (int i =1; i<=9; i++) {
+        [[[[self view]viewWithTag:i] subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    }
+    
+    for (int i=0; i<9; i++) {
+        [self.status replaceObjectAtIndex:i withObject:@"N"];
+    }
+    
+    [self disableLetterO];
+    [self enableLetterX];
+}
 
 -(Boolean)setImageOfView:(UIImageView *)dragging toView:(UIView *)grid{
     
@@ -167,14 +202,60 @@
         
         UIImage *currentImage = dragging.image;
         UIImageView *subView = [[UIImageView alloc] initWithImage:currentImage];
+        subView.tag = 0;
         [grid addSubview:subView];
-        
     }
     else{
         return false;
     }
     
+    return true;
+}
+
+-(BOOL)checkIfWinTheGame{
+    //this tag is to be used to distinguish the X and O
+    //X is for 20. and O is for 10
     
+    if (([[self.status objectAtIndex:0] isEqualToString:[self.status objectAtIndex:1]])&& ([[self.status objectAtIndex:1] isEqualToString:[self.status objectAtIndex:2]]) && (![[self.status objectAtIndex:2] isEqualToString:@"N"])) {
+        return true;
+    }
+    
+    if (([[self.status objectAtIndex:3] isEqualToString:[self.status objectAtIndex:4]])&& ([[self.status objectAtIndex:4] isEqualToString:[self.status objectAtIndex:5]]) && (![[self.status objectAtIndex:5] isEqualToString:@"N"])) {
+        return true;
+    }
+    if (([[self.status objectAtIndex:6] isEqualToString:[self.status objectAtIndex:7]])&& ([[self.status objectAtIndex:7] isEqualToString:[self.status objectAtIndex:8]]) && (![[self.status objectAtIndex:8] isEqualToString:@"N"])) {
+        return true;
+    }
+    
+    
+    if (([[self.status objectAtIndex:0] isEqualToString:[self.status objectAtIndex:3]])&& ([[self.status objectAtIndex:3] isEqualToString:[self.status objectAtIndex:6]]) && (![[self.status objectAtIndex:6] isEqualToString:@"N"])) {
+        return true;
+    }
+    
+    if (([[self.status objectAtIndex:1] isEqualToString:[self.status objectAtIndex:4]])&& ([[self.status objectAtIndex:4] isEqualToString:[self.status objectAtIndex:7]]) && (![[self.status objectAtIndex:7] isEqualToString:@"N"])) {
+        return true;
+    }
+    if (([[self.status objectAtIndex:2] isEqualToString:[self.status objectAtIndex:5]])&& ([[self.status objectAtIndex:5] isEqualToString:[self.status objectAtIndex:8]]) && (![[self.status objectAtIndex:8] isEqualToString:@"N"])) {
+        return true;
+    }
+    
+    if (([[self.status objectAtIndex:0] isEqualToString:[self.status objectAtIndex:4]])&& ([[self.status objectAtIndex:4] isEqualToString:[self.status objectAtIndex:8]]) && (![[self.status objectAtIndex:8] isEqualToString:@"N"])) {
+        return true;
+    }
+    
+    if (([[self.status objectAtIndex:2] isEqualToString:[self.status objectAtIndex:4]])&& ([[self.status objectAtIndex:4] isEqualToString:[self.status objectAtIndex:6]]) && (![[self.status objectAtIndex:6] isEqualToString:@"N"])) {
+        return true;
+    }
+    
+    return false;
+}
+
+-(BOOL)checkGameEven{
+    for (int i=0; i<9; i++) {
+        if ([[self.status objectAtIndex:i] isEqualToString:@"N"]) {
+            return false;
+        }
+    }
     return true;
 }
 
@@ -219,16 +300,10 @@
      ];
 }
 
-
-
-
-
-
-
-
-
-
-
-
+#pragma mark - UIAlertView Delegate
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
+    NSLog(@"Cancel the alertView");
+    [self refreshGame];
+}
 
 @end
