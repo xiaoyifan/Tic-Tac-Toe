@@ -90,14 +90,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" clearsContextBeforeDrawing="NO" tag="20" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="letterX" translatesAutoresizingMaskIntoConstraints="NO" id="Vsb-kb-j6L" customClass="lettersView">
-                                <rect key="frame" x="16" y="491" width="120" height="120"/>
+                                <rect key="frame" x="16" y="491" width="118" height="118"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="zUH-R8-Xry" appends="YES" id="C1w-cB-xY7"/>
                                 </connections>
                             </imageView>
                             <imageView clipsSubviews="YES" clearsContextBeforeDrawing="NO" tag="10" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="letterO" translatesAutoresizingMaskIntoConstraints="NO" id="E13-WI-Y5C" customClass="lettersView">
-                                <rect key="frame" x="239" y="491" width="120" height="120"/>
+                                <rect key="frame" x="239" y="491" width="118" height="118"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="ZR8-UR-d1T" appends="YES" id="Ti9-Pe-RNN"/>
