@@ -251,8 +251,16 @@
 -(void)refreshGame{
  
     for (int i =1; i<=9; i++) {
-        [[[[self view]viewWithTag:i] subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
+        [self movingGridImageOffScreen:(UIImageView *)[self.view viewWithTag:i]];
+        
     }
+    
+//    for (int i =1; i<=9; i++) {
+//        
+//        [[[[self view]viewWithTag:i] subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+//        NSLog(@"removed");
+//    }
     
     for (int i=0; i<9; i++) {
         [self.status replaceObjectAtIndex:i withObject:@"N"];
@@ -386,7 +394,25 @@
      ];
 }
 
+-(void)movingGridImageOffScreen:(UIImageView*)deletingView{
+    [UIView animateWithDuration:1 delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         
+                         deletingView.center = CGPointMake(self.view.frame.size.width+50,deletingView.center.y);
+                         
+                         
+                     }
+                     completion:^(BOOL completed){
+                         [[deletingView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+                         
+                     }
+     ];
+}
+
 -(void)infoSheetMoveToScreen{
+    
+    [self.view bringSubviewToFront:self.infoSheetView];
     
     [UIView animateWithDuration:0.8 delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
@@ -419,7 +445,9 @@
                          
                      }
                      completion:^(BOOL completed){
-                         NSLog(@"View is moved out");
+                         CGRect frame = self.infoSheetView.frame;
+                         frame.origin.y = -667.0f;
+                         self.infoSheetView.frame = frame;
                      }
      ];
     
