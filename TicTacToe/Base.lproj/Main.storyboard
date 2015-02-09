@@ -89,20 +89,24 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" clearsContextBeforeDrawing="NO" tag="20" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="letterX" translatesAutoresizingMaskIntoConstraints="NO" id="Vsb-kb-j6L" customClass="lettersView">
+                            <imageView clipsSubviews="YES" clearsContextBeforeDrawing="NO" tag="20" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="letterX" translatesAutoresizingMaskIntoConstraints="NO" id="Vsb-kb-j6L">
                                 <rect key="frame" x="16" y="491" width="118" height="118"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="zUH-R8-Xry" appends="YES" id="C1w-cB-xY7"/>
                                 </connections>
                             </imageView>
-                            <imageView clipsSubviews="YES" clearsContextBeforeDrawing="NO" tag="10" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="letterO" translatesAutoresizingMaskIntoConstraints="NO" id="E13-WI-Y5C" customClass="lettersView">
+                            <imageView clipsSubviews="YES" clearsContextBeforeDrawing="NO" tag="10" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="letterO" translatesAutoresizingMaskIntoConstraints="NO" id="E13-WI-Y5C">
                                 <rect key="frame" x="239" y="491" width="118" height="118"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="ZR8-UR-d1T" appends="YES" id="Ti9-Pe-RNN"/>
                                 </connections>
                             </imageView>
+                            <view tag="50" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HTE-Qp-ZOF" customClass="drawLineView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -110,6 +114,7 @@
                     <connections>
                         <outlet property="letterO" destination="E13-WI-Y5C" id="6DP-c1-qli"/>
                         <outlet property="letterX" destination="Vsb-kb-j6L" id="3EZ-7d-0j4"/>
+                        <outlet property="lineView" destination="HTE-Qp-ZOF" id="iAX-WR-vcR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

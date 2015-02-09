@@ -18,6 +18,7 @@
 
 }
 
+
 @property CGPoint letterXOriginalPosition;
 @property CGPoint letterOOriginalPosition;
 
@@ -49,6 +50,8 @@
     [self disableLetterO];
     
     [self loadAudios];
+    
+    [[self view]viewWithTag:50].hidden = YES;
 }
 
 -(void)loadAudios{
@@ -194,6 +197,8 @@
                 
                 if ([self checkIfWinTheGame]) {
                     
+                    [[self lineView] setHidden:NO];
+                    
                     AudioServicesPlaySystemSound(applause);
                     
                     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Game Over" message:[NSString stringWithFormat:@"%c wins the game",ch] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -239,6 +244,7 @@
     
     [self disableLetterO];
     [self enableLetterX];
+    [[self view]viewWithTag:50].hidden = YES;
 }
 
 -(Boolean)setImageOfView:(UIImageView *)dragging toView:(UIView *)grid{
@@ -262,33 +268,82 @@
     //X is for 20. and O is for 10
     
     if (([[self.status objectAtIndex:0] isEqualToString:[self.status objectAtIndex:1]])&& ([[self.status objectAtIndex:1] isEqualToString:[self.status objectAtIndex:2]]) && (![[self.status objectAtIndex:2] isEqualToString:@"N"])) {
+        
+        self.lineView.point1 = [self.view viewWithTag:1].center;
+        self.lineView.point2 = [self.view viewWithTag:3].center;
+        
+        [self.lineView setNeedsDisplay];
+        
         return true;
     }
     
     if (([[self.status objectAtIndex:3] isEqualToString:[self.status objectAtIndex:4]])&& ([[self.status objectAtIndex:4] isEqualToString:[self.status objectAtIndex:5]]) && (![[self.status objectAtIndex:5] isEqualToString:@"N"])) {
+        
+        self.lineView.point1 = [self.view viewWithTag:4].center;
+        self.lineView.point2 = [self.view viewWithTag:6].center;
+        
+        [self.lineView setNeedsDisplay];
+        
+       
         return true;
     }
     if (([[self.status objectAtIndex:6] isEqualToString:[self.status objectAtIndex:7]])&& ([[self.status objectAtIndex:7] isEqualToString:[self.status objectAtIndex:8]]) && (![[self.status objectAtIndex:8] isEqualToString:@"N"])) {
+        
+        self.lineView.point1 = [self.view viewWithTag:7].center;
+        self.lineView.point2 = [self.view viewWithTag:9].center;
+        
+        [self.lineView setNeedsDisplay];
+        
         return true;
     }
     
     
     if (([[self.status objectAtIndex:0] isEqualToString:[self.status objectAtIndex:3]])&& ([[self.status objectAtIndex:3] isEqualToString:[self.status objectAtIndex:6]]) && (![[self.status objectAtIndex:6] isEqualToString:@"N"])) {
+        
+        self.lineView.point1 = [self.view viewWithTag:1].center;
+        self.lineView.point2 = [self.view viewWithTag:7].center;
+        
+        [self.lineView setNeedsDisplay];
+        
         return true;
     }
     
     if (([[self.status objectAtIndex:1] isEqualToString:[self.status objectAtIndex:4]])&& ([[self.status objectAtIndex:4] isEqualToString:[self.status objectAtIndex:7]]) && (![[self.status objectAtIndex:7] isEqualToString:@"N"])) {
+        
+        self.lineView.point1 = [self.view viewWithTag:2].center;
+        self.lineView.point2 = [self.view viewWithTag:8].center;
+        
+        [self.lineView setNeedsDisplay];
+        
         return true;
     }
     if (([[self.status objectAtIndex:2] isEqualToString:[self.status objectAtIndex:5]])&& ([[self.status objectAtIndex:5] isEqualToString:[self.status objectAtIndex:8]]) && (![[self.status objectAtIndex:8] isEqualToString:@"N"])) {
+        
+        self.lineView.point1 = [self.view viewWithTag:3].center;
+        self.lineView.point2 = [self.view viewWithTag:9].center;
+        
+        [self.lineView setNeedsDisplay];
+        
         return true;
     }
     
     if (([[self.status objectAtIndex:0] isEqualToString:[self.status objectAtIndex:4]])&& ([[self.status objectAtIndex:4] isEqualToString:[self.status objectAtIndex:8]]) && (![[self.status objectAtIndex:8] isEqualToString:@"N"])) {
+        
+        self.lineView.point1 = [self.view viewWithTag:1].center;
+        self.lineView.point2 = [self.view viewWithTag:9].center;
+        
+        [self.lineView setNeedsDisplay];
+        
         return true;
     }
     
     if (([[self.status objectAtIndex:2] isEqualToString:[self.status objectAtIndex:4]])&& ([[self.status objectAtIndex:4] isEqualToString:[self.status objectAtIndex:6]]) && (![[self.status objectAtIndex:6] isEqualToString:@"N"])) {
+        
+        self.lineView.point1 = [self.view viewWithTag:3].center;
+        self.lineView.point2 = [self.view viewWithTag:7].center;
+        
+        [self.lineView setNeedsDisplay];
+        
         return true;
     }
     
@@ -347,7 +402,7 @@
 
 #pragma mark - UIAlertView Delegate
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
-    NSLog(@"Cancel the alertView");
+    NSLog(@"Cancel the alertView and refresh for new game.");
     [self refreshGame];
 }
 

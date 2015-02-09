@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "drawLineView.h"
 
 @interface ViewController : UIViewController<UIGestureRecognizerDelegate>
 
@@ -14,6 +15,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *letterO;
 
+@property (weak, nonatomic) IBOutlet drawLineView *lineView;
 
 @end
 

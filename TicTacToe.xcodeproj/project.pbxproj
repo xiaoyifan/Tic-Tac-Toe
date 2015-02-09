@@ -11,6 +11,7 @@
 		CC15EA9A1A86A4ED007CE08E /* glass_ping.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CC15EA971A86A4ED007CE08E /* glass_ping.mp3 */; };
 		CC15EA9C1A86A923007CE08E /* woosh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CC15EA9B1A86A923007CE08E /* woosh.mp3 */; };
 		CC15EA9E1A86AAEE007CE08E /* Audience_Applause.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CC15EA9D1A86AAEE007CE08E /* Audience_Applause.mp3 */; };
+		CC501F921A89088100093B67 /* drawLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CC501F911A89088100093B67 /* drawLineView.m */; };
 		CCFAA66E1A84B3CC00C97DAC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CCFAA66D1A84B3CC00C97DAC /* main.m */; };
 		CCFAA6711A84B3CC00C97DAC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CCFAA6701A84B3CC00C97DAC /* AppDelegate.m */; };
 		CCFAA6741A84B3CC00C97DAC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCFAA6731A84B3CC00C97DAC /* ViewController.m */; };
@@ -19,7 +20,6 @@
 		CCFAA67C1A84B3CC00C97DAC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCFAA67A1A84B3CC00C97DAC /* LaunchScreen.xib */; };
 		CCFAA6881A84B3CD00C97DAC /* TicTacToeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CCFAA6871A84B3CD00C97DAC /* TicTacToeTests.m */; };
 		CCFAA6921A84C1EF00C97DAC /* Media1.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCFAA6911A84C1EF00C97DAC /* Media1.xcassets */; };
-		CCFAA6981A84CCA100C97DAC /* lettersView.m in Sources */ = {isa = PBXBuildFile; fileRef = CCFAA6971A84CCA100C97DAC /* lettersView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +37,8 @@
 		CC15EA971A86A4ED007CE08E /* glass_ping.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = glass_ping.mp3; sourceTree = "<group>"; };
 		CC15EA9B1A86A923007CE08E /* woosh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = woosh.mp3; sourceTree = "<group>"; };
 		CC15EA9D1A86AAEE007CE08E /* Audience_Applause.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Audience_Applause.mp3; sourceTree = "<group>"; };
+		CC501F901A89088100093B67 /* drawLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = drawLineView.h; sourceTree = "<group>"; };
+		CC501F911A89088100093B67 /* drawLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = drawLineView.m; sourceTree = "<group>"; };
 		CCFAA6681A84B3CC00C97DAC /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCFAA66C1A84B3CC00C97DAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCFAA66D1A84B3CC00C97DAC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -51,8 +53,6 @@
 		CCFAA6861A84B3CD00C97DAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCFAA6871A84B3CD00C97DAC /* TicTacToeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TicTacToeTests.m; sourceTree = "<group>"; };
 		CCFAA6911A84C1EF00C97DAC /* Media1.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media1.xcassets; sourceTree = "<group>"; };
-		CCFAA6961A84CCA100C97DAC /* lettersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lettersView.h; sourceTree = "<group>"; };
-		CCFAA6971A84CCA100C97DAC /* lettersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = lettersView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,10 +105,8 @@
 		CCFAA66A1A84B3CC00C97DAC /* TicTacToe */ = {
 			isa = PBXGroup;
 			children = (
-				CCFAA6961A84CCA100C97DAC /* lettersView.h */,
-				CCFAA6971A84CCA100C97DAC /* lettersView.m */,
-				CCFAA66F1A84B3CC00C97DAC /* AppDelegate.h */,
-				CCFAA6701A84B3CC00C97DAC /* AppDelegate.m */,
+				CC501F901A89088100093B67 /* drawLineView.h */,
+				CC501F911A89088100093B67 /* drawLineView.m */,
 				CCFAA6721A84B3CC00C97DAC /* ViewController.h */,
 				CCFAA6731A84B3CC00C97DAC /* ViewController.m */,
 				CCFAA6751A84B3CC00C97DAC /* Main.storyboard */,
@@ -124,6 +122,8 @@
 		CCFAA66B1A84B3CC00C97DAC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CCFAA66F1A84B3CC00C97DAC /* AppDelegate.h */,
+				CCFAA6701A84B3CC00C97DAC /* AppDelegate.m */,
 				CCFAA66C1A84B3CC00C97DAC /* Info.plist */,
 				CCFAA66D1A84B3CC00C97DAC /* main.m */,
 			);
@@ -254,8 +254,8 @@
 			files = (
 				CCFAA6741A84B3CC00C97DAC /* ViewController.m in Sources */,
 				CCFAA6711A84B3CC00C97DAC /* AppDelegate.m in Sources */,
-				CCFAA6981A84CCA100C97DAC /* lettersView.m in Sources */,
 				CCFAA66E1A84B3CC00C97DAC /* main.m in Sources */,
+				CC501F921A89088100093B67 /* drawLineView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
