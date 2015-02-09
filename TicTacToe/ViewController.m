@@ -60,6 +60,8 @@ animation: Leture Slides
     
     [[self view]viewWithTag:50].hidden = YES;
     
+    [self.view bringSubviewToFront:self.infoSheetView];
+    
    
 }
 
@@ -276,6 +278,7 @@ animation: Leture Slides
 //put X or O in the right grid
 -(Boolean)setImageOfView:(UIImageView *)dragging toView:(UIView *)grid{
     
+    NSLog(@"subview count %lu", (unsigned long)grid.subviews.count);
     if (grid.subviews.count == 0) {
         
         UIImage *currentImage = dragging.image;
@@ -413,8 +416,6 @@ animation: Leture Slides
 }
 
 -(void)infoSheetMoveToScreen{
-    
-    [self.view bringSubviewToFront:self.infoSheetView];
     
     [UIView animateWithDuration:0.8 delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
