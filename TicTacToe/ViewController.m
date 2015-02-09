@@ -5,6 +5,14 @@
 //  Created by XiaoYifan on 2/6/15.
 //  Copyright (c) 2015 XiaoYifan. All rights reserved.
 //
+/*
+reference: 
+ 
+drawLine in UIView: http://www.techotopia.com/index.php/An_iOS_7_Graphics_Tutorial_using_Core_Graphics_and_Core_Image#Locating_the_drawRect_Method_in_the_UIView_Subclass
+ 
+animation: Leture Slides
+ 
+*/
 
 #import "ViewController.h"
 #import <AudioToolbox/AudioServices.h>
@@ -189,7 +197,6 @@
             
             //if the intersection is detected, we gonna add the dragging image to the grid
             if ([self setImageOfView:myView toView:currentView] == FALSE) {
-                //Animation method call here
                 
                 AudioServicesPlaySystemSound(buzzer);
                 [self movingBackAnimation:myView];
@@ -256,11 +263,6 @@
         
     }
     
-//    for (int i =1; i<=9; i++) {
-//        
-//        [[[[self view]viewWithTag:i] subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-//        NSLog(@"removed");
-//    }
     
     for (int i=0; i<9; i++) {
         [self.status replaceObjectAtIndex:i withObject:@"N"];
