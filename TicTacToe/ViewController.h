@@ -17,5 +17,8 @@
 
 @property (weak, nonatomic) IBOutlet drawLineView *lineView;
 
+@property (weak, nonatomic) IBOutlet UIView *infoSheetView;
+
+
 @end
 

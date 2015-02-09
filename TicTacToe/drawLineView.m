@@ -13,7 +13,7 @@
 
 -(void)drawRect:(CGRect)rect{
 
-   NSLog(@"point1: (%f, %f), point2: (%f, %f)", self.point1.x, self.point1.y,self.point2.x, self.point2.y);
+   NSLog(@"draw a line between point1: (%f, %f), point2: (%f, %f)", self.point1.x, self.point1.y,self.point2.x, self.point2.y);
     
    CGContextRef context = UIGraphicsGetCurrentContext();
    CGContextSetLineWidth(context, 2.0);

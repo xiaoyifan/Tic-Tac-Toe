@@ -18,7 +18,6 @@
 
 }
 
-
 @property CGPoint letterXOriginalPosition;
 @property CGPoint letterOOriginalPosition;
 
@@ -52,6 +51,13 @@
     [self loadAudios];
     
     [[self view]viewWithTag:50].hidden = YES;
+    
+   
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 -(void)loadAudios{
@@ -73,6 +79,17 @@
 
 }
 
+
+#pragma mark - show & dismiss of info sheet
+- (IBAction)showInfoSheet:(UIButton *)sender {
+    
+    [self infoSheetMoveToScreen];
+}
+
+- (IBAction)dismissInfoSheet:(id)sender {
+    
+    [self infoSheetDismiss];
+}
 
 #pragma mark - enable and disable of dragging image
 -(void)disableLetterO{
@@ -105,10 +122,6 @@
 }
 // disable lette X, won't accept user interaction
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 
 #pragma mark - gesture recognition
@@ -165,6 +178,7 @@
 }
 
 
+#pragma intersect detect & detail handle
 -(void)detectIntersect:(UIImageView *)myView{
     
     for (int i=1; i<=9; i++) {
@@ -193,13 +207,13 @@
                     [self.status replaceObjectAtIndex:i-1 withObject:@"O"];
                     ch = 'O';
                 }
-                
+                //put relevant char into the array for winning judgement
                 
                 if ([self checkIfWinTheGame]) {
                     
-                    [[self lineView] setHidden:NO];
+                    [[self lineView] setHidden:NO];//reveal the line view.
                     
-                    AudioServicesPlaySystemSound(applause);
+                    AudioServicesPlaySystemSound(applause);// play the applause audio
                     
                     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Game Over" message:[NSString stringWithFormat:@"%c wins the game",ch] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                     [alert show];
@@ -224,6 +238,7 @@
                        [self disableLetterO];
                        [self enableLetterX];
                     }
+                    //turn handle ends
             }
             
             break;
@@ -232,6 +247,7 @@
     }
 }
 
+//move the line and items in the grid for a new game.
 -(void)refreshGame{
  
     for (int i =1; i<=9; i++) {
@@ -247,6 +263,7 @@
     [[self view]viewWithTag:50].hidden = YES;
 }
 
+//put X or O in the right grid
 -(Boolean)setImageOfView:(UIImageView *)dragging toView:(UIView *)grid{
     
     if (grid.subviews.count == 0) {
@@ -263,26 +280,22 @@
     return true;
 }
 
+#pragma mark - check if anyone wins the game
+
 -(BOOL)checkIfWinTheGame{
     //this tag is to be used to distinguish the X and O
     //X is for 20. and O is for 10
     
     if (([[self.status objectAtIndex:0] isEqualToString:[self.status objectAtIndex:1]])&& ([[self.status objectAtIndex:1] isEqualToString:[self.status objectAtIndex:2]]) && (![[self.status objectAtIndex:2] isEqualToString:@"N"])) {
         
-        self.lineView.point1 = [self.view viewWithTag:1].center;
-        self.lineView.point2 = [self.view viewWithTag:3].center;
-        
-        [self.lineView setNeedsDisplay];
+        [self drawLineFromPoint:[self.view viewWithTag:1].center to:[self.view viewWithTag:3].center];
         
         return true;
     }
     
     if (([[self.status objectAtIndex:3] isEqualToString:[self.status objectAtIndex:4]])&& ([[self.status objectAtIndex:4] isEqualToString:[self.status objectAtIndex:5]]) && (![[self.status objectAtIndex:5] isEqualToString:@"N"])) {
         
-        self.lineView.point1 = [self.view viewWithTag:4].center;
-        self.lineView.point2 = [self.view viewWithTag:6].center;
-        
-        [self.lineView setNeedsDisplay];
+        [self drawLineFromPoint:[self.view viewWithTag:4].center to:[self.view viewWithTag:6].center];
         
        
         return true;
@@ -300,54 +313,48 @@
     
     if (([[self.status objectAtIndex:0] isEqualToString:[self.status objectAtIndex:3]])&& ([[self.status objectAtIndex:3] isEqualToString:[self.status objectAtIndex:6]]) && (![[self.status objectAtIndex:6] isEqualToString:@"N"])) {
         
-        self.lineView.point1 = [self.view viewWithTag:1].center;
-        self.lineView.point2 = [self.view viewWithTag:7].center;
-        
-        [self.lineView setNeedsDisplay];
+        [self drawLineFromPoint:[self.view viewWithTag:1].center to:[self.view viewWithTag:7].center];
         
         return true;
     }
     
     if (([[self.status objectAtIndex:1] isEqualToString:[self.status objectAtIndex:4]])&& ([[self.status objectAtIndex:4] isEqualToString:[self.status objectAtIndex:7]]) && (![[self.status objectAtIndex:7] isEqualToString:@"N"])) {
         
-        self.lineView.point1 = [self.view viewWithTag:2].center;
-        self.lineView.point2 = [self.view viewWithTag:8].center;
-        
-        [self.lineView setNeedsDisplay];
+        [self drawLineFromPoint:[self.view viewWithTag:2].center to:[self.view viewWithTag:8].center];
         
         return true;
     }
     if (([[self.status objectAtIndex:2] isEqualToString:[self.status objectAtIndex:5]])&& ([[self.status objectAtIndex:5] isEqualToString:[self.status objectAtIndex:8]]) && (![[self.status objectAtIndex:8] isEqualToString:@"N"])) {
         
-        self.lineView.point1 = [self.view viewWithTag:3].center;
-        self.lineView.point2 = [self.view viewWithTag:9].center;
-        
-        [self.lineView setNeedsDisplay];
+        [self drawLineFromPoint:[self.view viewWithTag:3].center to:[self.view viewWithTag:9].center];
         
         return true;
     }
     
     if (([[self.status objectAtIndex:0] isEqualToString:[self.status objectAtIndex:4]])&& ([[self.status objectAtIndex:4] isEqualToString:[self.status objectAtIndex:8]]) && (![[self.status objectAtIndex:8] isEqualToString:@"N"])) {
         
-        self.lineView.point1 = [self.view viewWithTag:1].center;
-        self.lineView.point2 = [self.view viewWithTag:9].center;
-        
-        [self.lineView setNeedsDisplay];
+        [self drawLineFromPoint:[self.view viewWithTag:1].center to:[self.view viewWithTag:9].center];
         
         return true;
     }
     
     if (([[self.status objectAtIndex:2] isEqualToString:[self.status objectAtIndex:4]])&& ([[self.status objectAtIndex:4] isEqualToString:[self.status objectAtIndex:6]]) && (![[self.status objectAtIndex:6] isEqualToString:@"N"])) {
         
-        self.lineView.point1 = [self.view viewWithTag:3].center;
-        self.lineView.point2 = [self.view viewWithTag:7].center;
-        
-        [self.lineView setNeedsDisplay];
+        [self drawLineFromPoint:[self.view viewWithTag:3].center to:[self.view viewWithTag:7].center];
         
         return true;
     }
     
     return false;
+}
+
+
+
+#pragma mark- draw line
+-(void)drawLineFromPoint:(CGPoint)point1 to:(CGPoint)point2{
+    self.lineView.point1 = point1;
+    self.lineView.point2 = point2;
+    [self.lineView setNeedsDisplay];
 }
 
 -(BOOL)checkGameEven{
@@ -377,6 +384,45 @@
                          NSLog(@"View %ld is moved back",(long)draggingView.tag);
                      }
      ];
+}
+
+-(void)infoSheetMoveToScreen{
+    
+    [UIView animateWithDuration:0.8 delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         
+                         CGRect frame = self.infoSheetView.frame;
+                         frame.origin.y = 0.0f;
+                         self.infoSheetView.frame = frame;
+                         
+                         
+                     }
+                     completion:^(BOOL completed){
+                         NSLog(@"View is moved down");
+                     }
+     ];
+
+}
+
+
+-(void)infoSheetDismiss{
+    
+    [UIView animateWithDuration:0.8 delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         
+                         CGRect frame = self.infoSheetView.frame;
+                         frame.origin.y = 667.0f;
+                         self.infoSheetView.frame = frame;
+                         
+                         
+                     }
+                     completion:^(BOOL completed){
+                         NSLog(@"View is moved out");
+                     }
+     ];
+    
 }
 
 -(void)viewSizeChangeOnYourTurn:(UIImageView *)nowView{
