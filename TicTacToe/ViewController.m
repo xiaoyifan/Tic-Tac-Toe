@@ -26,6 +26,8 @@ animation: Leture Slides
 
 }
 
+@property NSMutableArray *centers;
+
 @property CGPoint letterXOriginalPosition;
 @property CGPoint letterOOriginalPosition;
 
@@ -52,6 +54,8 @@ animation: Leture Slides
     
     for (int i=0; i<9; i++) {
         [self.status addObject:@"N"];
+        CGPoint point = [[self.view viewWithTag:i+1] center];
+        [self.centers addObject:[NSValue valueWithCGPoint:point]];
     }
     
     [self disableLetterO];
@@ -143,6 +147,13 @@ animation: Leture Slides
     if([sender state] == UIGestureRecognizerStateBegan)
     {
         AudioServicesPlaySystemSound(woosh);
+        
+        //[self resetPosition:deletingView];
+        for (int i=1; i<=9; i++) {
+            [self resetPosition:[self.view viewWithTag:i]];
+        }
+        
+        [self.view bringSubviewToFront:self.infoSheetView];
     }
     
     if([sender state] == UIGestureRecognizerStateBegan || [sender state] == UIGestureRecognizerStateChanged){
@@ -258,21 +269,27 @@ animation: Leture Slides
 
 //move the line and items in the grid for a new game.
 -(void)refreshGame{
+    
+    
  
     for (int i =1; i<=9; i++) {
     
-        [self movingGridImageOffScreen:(UIImageView *)[self.view viewWithTag:i]];
+        [self movingGridImageOffScreen:[self.view viewWithTag:i]];
         
     }
     
     
     for (int i=0; i<9; i++) {
         [self.status replaceObjectAtIndex:i withObject:@"N"];
+        
     }
+    
     
     [self disableLetterO];
     [self enableLetterX];
     [[self view]viewWithTag:50].hidden = YES;
+    
+    
 }
 
 //put X or O in the right grid
@@ -399,7 +416,7 @@ animation: Leture Slides
      ];
 }
 
--(void)movingGridImageOffScreen:(UIImageView*)deletingView{
+-(void)movingGridImageOffScreen:(UIView*)deletingView{
     [UIView animateWithDuration:1 delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
@@ -410,9 +427,19 @@ animation: Leture Slides
                      }
                      completion:^(BOOL completed){
                          [[deletingView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-                         
                      }
      ];
+}
+
+-(void)resetPosition:(UIView *)viewBack{
+    
+    
+       NSValue *val = [self.centers objectAtIndex:viewBack.tag-1];
+       CGPoint p = [val CGPointValue];
+    NSLog(@"put view %ld back",viewBack.tag-1);
+    NSLog(@"point to %f, %f", p.x, p.y);
+       [viewBack setCenter:p];
+    
 }
 
 -(void)infoSheetMoveToScreen{
